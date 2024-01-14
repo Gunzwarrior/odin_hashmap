@@ -14,6 +14,8 @@ class Hashmap
     buckets
   end
 
+  #method to calculate the load factor, grow the number of buckets and reequilibrate the keys in the buckets
+  
   def hash(string)
     hash_code = 0
     prime_number = 31
@@ -45,8 +47,13 @@ class Hashmap
     end 
   end
 
-  def get
-    
+  def get(key)
+    hashed_key = hash(key)
+    if empty_bucket?(hashed_key)
+      nil
+    else
+      buckets[hashed_key].find_key(key).value[1]
+    end
   end
 
   def key?

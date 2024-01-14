@@ -33,8 +33,9 @@ attr_reader :head
   def find_key(key)
     node = @head
 
-    return false if !node.next
+    
     return node if node.value[0] == key
+    return false if !node.next
     while (node = node.next)
       return node if node.value[0] == key
     end
