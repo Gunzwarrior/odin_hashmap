@@ -20,6 +20,17 @@ attr_reader :head
     return node if !node.next while (node = node.next)
   end
 
+  def number_node
+    return 0 if head.nil?
+    node = @head
+    count = 1
+    return count if !node.next
+    while node = node.next
+      count+=1
+    end
+    count
+  end
+
   def find(array)
     node = @head
 
@@ -33,7 +44,6 @@ attr_reader :head
   def find_key(key)
     node = @head
 
-    
     return node if node.value[0] == key
     return false if !node.next
     while (node = node.next)

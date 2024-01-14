@@ -72,7 +72,9 @@ class Hashmap
   end
 
   def length
-    
+    count = 0
+    buckets.each {|bucket| count += bucket.number_node}
+    count
   end
 
   def clear
