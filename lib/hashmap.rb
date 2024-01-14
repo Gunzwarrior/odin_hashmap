@@ -65,8 +65,10 @@ class Hashmap
     end
   end
 
-  def remove
-    
+  def remove(key)
+    hashed_key = hash(key)
+    buckets[hashed_key].delete(key) if key?(key)
+
   end
 
   def length
