@@ -95,7 +95,9 @@ class Hashmap
   end
 
   def entries
-    
+    array = []
+    buckets.each {|bucket| array.push(bucket.all_arrays)}
+    array.flatten(1).compact
   end
 
 end

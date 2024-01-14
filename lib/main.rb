@@ -21,3 +21,4 @@ p map.length
 p map.remove("five")
 p map.keys
 p map.values
+p map.entries

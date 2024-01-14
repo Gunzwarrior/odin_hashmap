@@ -90,6 +90,7 @@ attr_reader :head
     end
     array
   end
+
   def all_values
     return if @head.nil?
     node = @head
@@ -99,4 +100,15 @@ attr_reader :head
     end
     array
   end
+
+  def all_arrays
+    return if @head.nil?
+    node = @head
+    array = [node.value]
+    while (node = node.next)
+      array.push(node.value)
+    end
+    array
+  end
+
 end
