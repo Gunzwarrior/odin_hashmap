@@ -1,14 +1,16 @@
+require_relative 'node'
+
 class LinkedList
-#add append delete find
+attr_reader :head
   def initialize
     @head = nil
   end
 
-  def append(value)
+  def append(array)
     if @head
-      find_tail.next = Node.new(value)
+      find_tail.next = Node.new(array)
     else
-      @head = Node.new(value)
+      @head = Node.new(array)
     end
   end
 
@@ -18,33 +20,53 @@ class LinkedList
     return node if !node.next while (node = node.next)
   end
 
-  def find(value)
+  def find(array)
     node = @head
 
     return false if !node.next
-    return node if node.value == value
+    return node if node.value == array
     while (node = node.next)
-      return node if node.value == value
+      return node if node.value == array
     end
   end
 
-  def delete(value)
-    if @head.value == value
+  def find_key(key)
+    node = @head
+
+    return false if !node.next
+    return node if node.value[0] == key
+    while (node = node.next)
+      return node if node.value[0] == key
+    end
+  end
+
+  def find_value(value)
+    node = @head
+
+    return false if !node.next
+    return node if node.value[1] == value
+    while (node = node.next)
+      return node if node.value[1] == value
+    end
+  end
+
+  def delete(key)
+    if @head.value[0] == key
       @head = @head.next
       return
     end
-    node = find_before(value)
+    node = find_before(key)
     node.next = node.next.next
   end
 
-  def find_before(value)
+  def find_before(key)
     node = @head
 
     return false if !node.next
-    return node if node.next.value == value
+    return node if node.next.value[0] == key
 
     while (node = node.next)
-      return node if node.next && node.next.value == value
+      return node if node.next && node.next.value[0] == key
     end
   end
 

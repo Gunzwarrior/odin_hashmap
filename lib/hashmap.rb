@@ -1,10 +1,17 @@
 class Hashmap
-
+  attr_accessor :buckets
   attr_reader :capacity
 
   def initialize
     @capacity = 16
     @load_factor = 0
+    @buckets = buckets_init
+  end
+
+  def buckets_init
+    buckets = []
+    16.times { buckets.push(LinkedList.new) } 
+    buckets
   end
 
   def hash(string)
@@ -16,8 +23,26 @@ class Hashmap
     hash_code % capacity
   end
 
-  def set
-    
+  def empty_bucket?(index)
+    raise IndexError if index.negative? || index >= @buckets.length
+
+    buckets[index].head.nil? ? true : false
+
+  end
+
+  def key_exist?(bucket, key)
+    bucket.find_key(key) ? true : false
+  end
+
+  def set(key, value)
+    hashed_key = hash(key)
+    if empty_bucket?(hashed_key)
+      buckets[hashed_key].append([key, value])
+    else
+      buckets[hashed_key].delete(key) if key_exist?(buckets[hashed_key], key)
+      
+      buckets[hashed_key].append([key, value])
+    end 
   end
 
   def get

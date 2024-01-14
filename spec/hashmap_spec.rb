@@ -1,4 +1,4 @@
-require './lib/hashmap'
+require_relative '../lib/hashmap'
 
 describe Hashmap do
   describe "#hash" do
