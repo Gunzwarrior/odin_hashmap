@@ -20,3 +20,4 @@ p map.set("five", "cinque")
 p map.length
 p map.remove("five")
 p map.keys
+p map.values
