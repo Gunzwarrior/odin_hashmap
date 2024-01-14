@@ -56,8 +56,13 @@ class Hashmap
     end
   end
 
-  def key?
-    
+  def key?(key)
+    hashed_key = hash(key)
+    if empty_bucket?(hashed_key)
+      false
+    else
+      key_exist?(buckets[hashed_key], key) ? true : false
+    end
   end
 
   def remove
