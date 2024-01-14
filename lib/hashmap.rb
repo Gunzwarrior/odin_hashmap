@@ -83,7 +83,9 @@ class Hashmap
   end
 
   def keys
-    
+    array = []
+    buckets.each {|bucket| array.push(bucket.all_keys)}
+    array.flatten.compact
   end
 
   def values

@@ -81,4 +81,13 @@ attr_reader :head
     end
   end
 
+  def all_keys
+    return if @head.nil?
+    node = @head
+    array = [node.value[0]]
+    while (node = node.next)
+      array.push(node.value[0])
+    end
+    array
+  end
 end

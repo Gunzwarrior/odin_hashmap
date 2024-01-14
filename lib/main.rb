@@ -18,5 +18,5 @@ p map.buckets[6].number_node
 p map.length
 p map.set("five", "cinque")
 p map.length
-map.clear
-p map.buckets
+p map.remove("five")
+p map.keys
