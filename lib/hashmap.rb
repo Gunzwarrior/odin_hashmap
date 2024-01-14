@@ -78,7 +78,8 @@ class Hashmap
   end
 
   def clear
-    
+    capacity = 16
+    @buckets = buckets_init
   end
 
   def keys
