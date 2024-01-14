@@ -1,21 +1,32 @@
 class Hashmap
-  attr_accessor :buckets
-  attr_reader :capacity
+  attr_accessor :buckets, :capacity
 
   def initialize
     @capacity = 16
-    @load_factor = 0
     @buckets = buckets_init
   end
 
   def buckets_init
     buckets = []
-    16.times { buckets.push(LinkedList.new) } 
+    capacity.times { buckets.push(LinkedList.new) } 
+    buckets
+  end
+ 
+  def overload?
+    length/@capacity.to_f >= 0.75
+  end
+
+  def double_cap
+    @capacity = capacity * 2
+  end
+
+  def rehash
+    array = entries
+    clear
+    array.each {|pair| set(pair[0], pair[1])}
     buckets
   end
 
-  #method to calculate the load factor, grow the number of buckets and reequilibrate the keys in the buckets
-  
   def hash(string)
     hash_code = 0
     prime_number = 31
@@ -37,6 +48,11 @@ class Hashmap
   end
 
   def set(key, value)
+    if overload?
+      double_cap
+      rehash
+    end
+
     hashed_key = hash(key)
     if empty_bucket?(hashed_key)
       buckets[hashed_key].append([key, value])
@@ -78,7 +94,6 @@ class Hashmap
   end
 
   def clear
-    capacity = 16
     @buckets = buckets_init
   end
 

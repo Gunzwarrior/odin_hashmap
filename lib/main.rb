@@ -11,14 +11,17 @@ p map.set("two", "2")
 p map.set("three", "3")
 p map.set("four", "4")
 p map.set("five", "5")
-p map.get("one")
+p map.set("six", "6")
+p map.set("seven", "7")
+p map.set("eight", "8")
+p map.set("nine", "9")
+p map.set("ten", "10")
+p map.set("eleven", "11")
+p map.set("twelve", "12")
+p map.buckets.length
+p map.set("thirteen", "13")
+p map.buckets.length
 p map.buckets
-p map.buckets[1].number_node
-p map.buckets[6].number_node
-p map.length
-p map.set("five", "cinque")
-p map.length
-p map.remove("five")
 p map.keys
 p map.values
 p map.entries
